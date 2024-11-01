@@ -1,0 +1,11 @@
+{% extends 'mensagens/base.html' %}
+
+{% block content %}
+<h2>Criar Nova Sala</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="name">Nome da Sala:</label>
+    <input type="text" name="name" id="name" required>
+    <button type="submit">Criar Sala</button>
+</form>
+{% endblock %}

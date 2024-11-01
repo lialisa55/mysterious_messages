@@ -1,0 +1,18 @@
+{% extends "mensagens/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Bem-vindo ao Halloween Adventure!</h2>
+<p>Escolha uma sala para iniciar a aventura.</p>
+<p><a href="{% url 'create_room' %}">Crie uma sala</a></p>
+<div class="rooms">
+    {% for room in rooms %}
+        <div class="room">
+            <h3>{{ room.name }}</h3>
+            <p>{{ room.description }}</p>
+            <a href="{% url 'room' room.id %}" class="btn">Entrar na Sala</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

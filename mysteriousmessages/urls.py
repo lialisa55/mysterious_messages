@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from mensagens import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("mensagens/", include("mensagens.urls")),
+    path('mensagens/', include('mensagens.urls')),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),  # URL padrão de login
+    path('accounts/profile/', views.profile, name='profile'),
 ]
+
+

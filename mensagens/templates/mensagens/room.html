@@ -1,0 +1,26 @@
+{% extends "mensagens/base.html" %}
+
+{% block title %}{{ room.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ room.name }}</h2>
+<p>{{ room.description }}</p>
+
+<div class="chat">
+    <div class="chat-messages">
+        {% for message in messages %}
+            <div class="message">
+                <span class="sender">{{ message.sender.nickname }}:</span>
+                <span class="content">{{ message.content }}</span>
+                <span class="timestamp">{{ message.timestamp|date:"H:i" }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<form action="{% url 'send_message' room.id %}" method="post" class="message-form">
+    {% csrf_token %}
+    <textarea name="content" rows="3" placeholder="Digite sua mensagem aqui..."></textarea>
+    <button type="submit">Enviar</button>
+</form>
+{% endblock %}
